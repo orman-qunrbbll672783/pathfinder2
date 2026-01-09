@@ -171,7 +171,7 @@ function getMockExplorationMap() {
             { title: "Bootcamp", description: "Skill focused", relevance: "Fast track" },
             { title: "Gap Year", description: "Experience first", relevance: "Self-discovery" }
         ]
-    };
+    } as JourneyOutcome;
 }
 
 async function generateUniversityPaths(context: string): Promise<JourneyOutcome> {
