@@ -156,9 +156,9 @@ function parseAIResponse(
     flowType: SituationAnalysis["flowType"],
     aiResponse: string
 ): SituationAnalysis {
-    const reasoningMatch = aiResponse.match(/REASONING:(.*?)(?=APPROACH:|$)/s);
-    const approachMatch = aiResponse.match(/APPROACH:(.*?)(?=QUESTIONS:|$)/s);
-    const questionsMatch = aiResponse.match(/QUESTIONS:(.*?)$/s);
+    const reasoningMatch = aiResponse.match(/REASONING:([\s\S]*?)(?=APPROACH:|$)/);
+    const approachMatch = aiResponse.match(/APPROACH:([\s\S]*?)(?=QUESTIONS:|$)/);
+    const questionsMatch = aiResponse.match(/QUESTIONS:([\s\S]*?)$/);
 
     const reasoning = reasoningMatch?.[1]?.trim() || "Analyzing your situation...";
     const approach = approachMatch?.[1]?.trim() || "Let's explore your options together.";
