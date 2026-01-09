@@ -37,9 +37,9 @@ export default function ProfilePage() {
     const [formData, setFormData] = useState({
         currentCountry: "",
         targetCountry: "",
-        educationStage: "" as EducationStage,
-        budgetLevel: "" as BudgetLevel,
-        mainFear: "" as FearType,
+        educationStage: null as EducationStage | null,
+        budgetLevel: null as BudgetLevel | null,
+        mainFear: null as FearType | null,
         confidenceLevel: 5,
     });
 
@@ -78,6 +78,8 @@ export default function ProfilePage() {
     };
 
     const handleSubmit = () => {
+        if (!formData.educationStage || !formData.budgetLevel || !formData.mainFear) return;
+
         const profile: StudentProfile = {
             id: `profile-${Date.now()}`,
             situation,
@@ -97,10 +99,10 @@ export default function ProfilePage() {
     const canProceed = () => {
         switch (step) {
             case 1: return formData.currentCountry !== "";
-            case 2: return formData.educationStage !== "";
+            case 2: return !!formData.educationStage;
             case 3: return formData.targetCountry !== "";
-            case 4: return formData.budgetLevel !== "";
-            case 5: return formData.mainFear !== "";
+            case 4: return !!formData.budgetLevel;
+            case 5: return !!formData.mainFear;
             case 6: return true;
             default: return false;
         }
@@ -223,8 +225,8 @@ export default function ProfilePage() {
                                             key={stage.value}
                                             onClick={() => setFormData({ ...formData, educationStage: stage.value })}
                                             className={`p-5 rounded-xl border-2 transition-all text-left ${formData.educationStage === stage.value
-                                                    ? "border-gray-900 bg-gray-50 shadow-md"
-                                                    : "border-gray-200 hover:border-gray-400"
+                                                ? "border-gray-900 bg-gray-50 shadow-md"
+                                                : "border-gray-200 hover:border-gray-400"
                                                 }`}
                                         >
                                             <span className="text-lg font-medium text-gray-900">{stage.label}</span>
@@ -315,8 +317,8 @@ export default function ProfilePage() {
                                             key={budget.value}
                                             onClick={() => setFormData({ ...formData, budgetLevel: budget.value })}
                                             className={`w-full p-6 rounded-xl border-2 transition-all text-left ${formData.budgetLevel === budget.value
-                                                    ? "border-gray-900 bg-gray-50 shadow-md"
-                                                    : "border-gray-200 hover:border-gray-400"
+                                                ? "border-gray-900 bg-gray-50 shadow-md"
+                                                : "border-gray-200 hover:border-gray-400"
                                                 }`}
                                         >
                                             <div className="font-semibold text-lg mb-1 text-gray-900">{budget.label}</div>
@@ -341,8 +343,8 @@ export default function ProfilePage() {
                                             key={fear.value}
                                             onClick={() => setFormData({ ...formData, mainFear: fear.value })}
                                             className={`p-6 rounded-xl border-2 transition-all ${formData.mainFear === fear.value
-                                                    ? "border-gray-900 bg-gray-50 shadow-md"
-                                                    : "border-gray-200 hover:border-gray-400"
+                                                ? "border-gray-900 bg-gray-50 shadow-md"
+                                                : "border-gray-200 hover:border-gray-400"
                                                 }`}
                                         >
                                             <div className="text-3xl mb-3">{fear.icon}</div>
