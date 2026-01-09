@@ -9,7 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "framer-motion": "^12.24.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.47.0",
     "next": "16.1.1",
+    "openai": "^6.15.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
