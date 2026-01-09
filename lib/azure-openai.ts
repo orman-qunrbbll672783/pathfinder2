@@ -322,7 +322,7 @@ ${Object.entries(path.risks)
 ${risk.description}
 
 Mitigation strategies:
-${risk.mitigation.map((m) => `• ${m}`).join("\n")}`
+${risk.mitigation.map((m: string) => `• ${m}`).join("\n")}`
             )
             .join("\n\n")}
 
